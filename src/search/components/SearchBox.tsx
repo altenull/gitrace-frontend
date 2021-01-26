@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { _colorGray20 } from '../../styles/theme';
 import { SearchIcon } from '../../ui';
@@ -34,17 +34,12 @@ const StdIconPositioner = styled.i`
   top: 18px;
 `;
 
-const SearchBox: React.FC<SearchBoxProps> = ({
-  placeholder = '',
-  disabled = false,
-  onEnter,
-  ...props
-}: SearchBoxProps) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ placeholder = '', disabled = false, onEnter }: SearchBoxProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
-  };
+  }, []);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -53,7 +48,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   };
 
   return (
-    <StdSearchBoxWrapper {...props}>
+    <StdSearchBoxWrapper>
       <StdSearchBox
         type='text'
         placeholder={placeholder}
