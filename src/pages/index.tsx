@@ -1,14 +1,32 @@
+import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import { QueryParamKey } from '../core/enums/query-param-key.enum';
+import { SearchBox } from '../search/components';
 
-export default function Home() {
+const Home = () => {
+  const router = useRouter();
+
+  const navigateToSearchPage = (searchValue: string) => {
+    router.push({
+      pathname: '/search',
+      query: {
+        [QueryParamKey.Q]: searchValue,
+      },
+    });
+  };
+
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Create Next App</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      Home Page
-    </div>
+
+      <main>
+        <SearchBox placeholder='find github user' onEnter={navigateToSearchPage} />
+      </main>
+    </>
   );
-}
+};
+
+export default Home;
