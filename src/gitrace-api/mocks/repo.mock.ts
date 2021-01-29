@@ -1,4 +1,4 @@
-import { parseRepoVMFromRepo } from '../helpers';
+import { parseRepoVM } from '../helpers';
 import { Repo, RepoVM } from '../models/repo';
 
 export const mockRepos: Repo[] = [
@@ -328,4 +328,4 @@ export const mockRepos: Repo[] = [
   },
 ];
 
-export const mockRepoVMs: RepoVM[] = mockRepos.map(parseRepoVMFromRepo);
+export const mockRepoVMs: RepoVM[] = mockRepos.map(parseRepoVM);

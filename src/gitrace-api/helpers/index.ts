@@ -1,4 +1,4 @@
-export { default as parseCommitActivityVMFromCommitActivity } from './parseCommitActivityVMFromCommitActivity';
-export { default as parsePunchCardVMFromPunchCard } from './parsePunchCardVMFromPunchCard';
-export { default as parseRepoVMFromRepo } from './parseRepoVMFromRepo';
-export { default as parseUserVMFromUser } from './parseUserVMFromUser';
+export { default as parseCommitActivityVM } from './parseCommitActivityVM';
+export { default as parsePunchCardVM } from './parsePunchCardVM';
+export { default as parseRepoVM } from './parseRepoVM';
+export { default as parseUserVM } from './parseUserVM';

@@ -1,4 +1,4 @@
-import { parseCommitActivityVMFromCommitActivity, parsePunchCardVMFromPunchCard } from '../helpers';
+import { parseCommitActivityVM, parsePunchCardVM } from '../helpers';
 import { CommitActivity, CommitActivityVM, LanguageVM, PunchCard, PunchCardVM } from '../models/repo-detail';
 
 /**
@@ -177,7 +177,7 @@ export const mockPunchCard: PunchCard = [
   [6, 23, 0],
 ];
 
-export const mockPunchCardVM: PunchCardVM = parsePunchCardVMFromPunchCard(mockPunchCard);
+export const mockPunchCardVM: PunchCardVM = parsePunchCardVM(mockPunchCard);
 
 export const mockLanguageVM: LanguageVM = {
   TypeScript: 103153,
@@ -415,6 +415,4 @@ export const mockCommitActivities: CommitActivity[] = [
   },
 ];
 
-export const mockCommitActivityVMs: CommitActivityVM[] = mockCommitActivities.map(
-  parseCommitActivityVMFromCommitActivity
-);
+export const mockCommitActivityVMs: CommitActivityVM[] = mockCommitActivities.map(parseCommitActivityVM);

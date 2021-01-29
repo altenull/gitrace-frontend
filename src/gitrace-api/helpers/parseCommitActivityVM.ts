@@ -1,11 +1,6 @@
 import { CommitActivity, CommitActivityVM, WeeklyCommitActivity, WeeklyCommitActivityVM } from '../models/repo-detail';
 
-const parseWeeklyCommitActivityVMFromWeeklyCommitActivity = ({
-  w,
-  a,
-  d,
-  c,
-}: WeeklyCommitActivity): WeeklyCommitActivityVM => {
+const parseWeeklyCommitActivityVM = ({ w, a, d, c }: WeeklyCommitActivity): WeeklyCommitActivityVM => {
   return {
     timestamp: w,
     numberOfAdditions: a,
@@ -14,14 +9,14 @@ const parseWeeklyCommitActivityVMFromWeeklyCommitActivity = ({
   };
 };
 
-const parseCommitActivityVMFromCommitActivity = ({
+const parseCommitActivityVM = ({
   total,
   weeks,
   author: { login, id, avatar_url, html_url },
 }: CommitActivity): CommitActivityVM => {
   return {
     totalCommits: total,
-    weeklyCommitActivities: weeks.map(parseWeeklyCommitActivityVMFromWeeklyCommitActivity),
+    weeklyCommitActivities: weeks.map(parseWeeklyCommitActivityVM),
     author: {
       login,
       id,
@@ -31,4 +26,4 @@ const parseCommitActivityVMFromCommitActivity = ({
   };
 };
 
-export default parseCommitActivityVMFromCommitActivity;
+export default parseCommitActivityVM;

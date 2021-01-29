@@ -1,4 +1,4 @@
-import { parseUserVMFromUser } from '../helpers';
+import { parseUserVM } from '../helpers';
 import { User, UserVM } from '../models/user';
 
 export const mockUser: User = {
@@ -15,4 +15,4 @@ export const mockUser: User = {
   created_at: '2017-04-06T02:02:51Z',
 };
 
-export const mockUserVM: UserVM = parseUserVMFromUser(mockUser);
+export const mockUserVM: UserVM = parseUserVM(mockUser);

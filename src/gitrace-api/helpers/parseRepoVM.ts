@@ -1,6 +1,6 @@
 import { Repo, RepoVM } from '../models/repo';
 
-const parseRepoVMFromRepo = ({
+const parseRepoVM = ({
   id,
   name,
   description,
@@ -26,4 +26,4 @@ const parseRepoVMFromRepo = ({
   };
 };
 
-export default parseRepoVMFromRepo;
+export default parseRepoVM;

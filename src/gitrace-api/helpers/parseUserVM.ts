@@ -1,6 +1,6 @@
 import { User, UserVM } from '../models/user';
 
-const parseUserVMFromUser = ({
+const parseUserVM = ({
   login,
   id,
   avatar_url,
@@ -28,4 +28,4 @@ const parseUserVMFromUser = ({
   };
 };
 
-export default parseUserVMFromUser;
+export default parseUserVM;

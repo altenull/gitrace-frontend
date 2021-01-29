@@ -1,6 +1,6 @@
 import { PunchCard, PunchCardVM } from '../models/repo-detail';
 
-const parsePunchCardVMFromPunchCard = (punchCard: PunchCard): PunchCardVM =>
+const parsePunchCardVM = (punchCard: PunchCard): PunchCardVM =>
   punchCard.map((punchCardHole: number[]) => {
     const [dayOfWeek, hour, numberOfCommits] = punchCardHole;
 
@@ -11,4 +11,4 @@ const parsePunchCardVMFromPunchCard = (punchCard: PunchCard): PunchCardVM =>
     };
   });
 
-export default parsePunchCardVMFromPunchCard;
+export default parsePunchCardVM;
