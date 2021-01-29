@@ -1,5 +1,5 @@
 import { parsePunchCardVMFromPunchCard } from '../helpers';
-import { PunchCard, PunchCardVM } from '../models/repo-detail';
+import { LanguageVM, PunchCard, PunchCardVM } from '../models/repo-detail';
 
 /**
  * [0]: dayOfWeek - 0(Sun) ~ 6(Sat)
@@ -178,3 +178,10 @@ export const mockPunchCard: PunchCard = [
 ];
 
 export const mockPunchCardVM: PunchCardVM = parsePunchCardVMFromPunchCard(mockPunchCard);
+
+export const mockLanguageVM: LanguageVM = {
+  TypeScript: 103153,
+  JavaScript: 17052,
+  SCSS: 12774,
+  HTML: 4143,
+};

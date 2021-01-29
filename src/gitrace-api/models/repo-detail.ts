@@ -7,3 +7,5 @@ export interface PunchCardHole {
 }
 
 export type PunchCardVM = Array<PunchCardHole>;
+
+export type LanguageVM = { [language: string]: number };
