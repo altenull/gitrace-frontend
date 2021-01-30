@@ -49,3 +49,15 @@ export interface CommitActivityVM {
   weeklyCommitActivities: WeeklyCommitActivityVM[];
   author: AuthorVM;
 }
+
+export interface RepoDetail {
+  punchCard: PunchCard;
+  language: LanguageVM;
+  commitActivities: CommitActivity[];
+}
+
+export interface RepoDetailVM {
+  punchCardVM: PunchCardVM;
+  languageVM: LanguageVM;
+  commitActivityVMs: CommitActivityVM[];
+}

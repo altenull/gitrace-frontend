@@ -1,10 +1,19 @@
-import { parseCommitActivityVM, parsePunchCardVM } from '../helpers';
-import { CommitActivity, CommitActivityVM, LanguageVM, PunchCard, PunchCardVM } from '../models/repo-detail';
+import { parseCommitActivityVM, parsePunchCardVM, parseRepoDetailVM } from '../helpers';
+import {
+  CommitActivity,
+  CommitActivityVM,
+  LanguageVM,
+  PunchCard,
+  PunchCardVM,
+  RepoDetail,
+  RepoDetailVM,
+} from '../models/repo-detail';
 
 /**
  * [0]: dayOfWeek - 0(Sun) ~ 6(Sat)
  * [1]: hour - 0 ~ 23
  * [2]: number of commits
+ * https://docs.github.com/en/rest/reference/repos#get-the-hourly-commit-count-for-each-day
  */
 export const mockPunchCard: PunchCard = [
   [0, 0, 0],
@@ -179,6 +188,7 @@ export const mockPunchCard: PunchCard = [
 
 export const mockPunchCardVM: PunchCardVM = parsePunchCardVM(mockPunchCard);
 
+// https://docs.github.com/en/rest/reference/repos#list-repository-languages
 export const mockLanguageVM: LanguageVM = {
   TypeScript: 103153,
   JavaScript: 17052,
@@ -186,6 +196,7 @@ export const mockLanguageVM: LanguageVM = {
   HTML: 4143,
 };
 
+// https://docs.github.com/en/rest/reference/repos#get-all-contributor-commit-activity
 export const mockCommitActivities: CommitActivity[] = [
   {
     total: 86,
@@ -416,3 +427,11 @@ export const mockCommitActivities: CommitActivity[] = [
 ];
 
 export const mockCommitActivityVMs: CommitActivityVM[] = mockCommitActivities.map(parseCommitActivityVM);
+
+export const mockRepoDetail: RepoDetail = {
+  punchCard: mockPunchCard,
+  language: mockLanguageVM,
+  commitActivities: mockCommitActivities,
+};
+
+export const mockRepoDetailVM: RepoDetailVM = parseRepoDetailVM(mockRepoDetail);
