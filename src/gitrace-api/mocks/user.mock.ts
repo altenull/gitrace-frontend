@@ -1,18 +1,13 @@
-import { parseUserVM } from '../helpers';
-import { User, UserVM } from '../models/user';
+import { User } from '../models/user';
 
 export const mockUser: User = {
-  login: 'altenull',
   id: 26947777,
-  avatar_url: 'https://avatars.githubusercontent.com/u/26947777?v=4',
+  login: 'altenull',
+  avatarUrl: 'https://avatars.githubusercontent.com/u/26947777?v=4',
   name: 'Heonyoung Kim',
-  company: null,
+  numberOfFollowers: 17,
+  numberOfFollowing: 22,
+  createdAt: '2017-04-06T02:02:51Z',
   location: 'Seoul, South Korea',
-  email: null,
   bio: 'Frontend developer',
-  followers: 17,
-  following: 22,
-  created_at: '2017-04-06T02:02:51Z',
 };
-
-export const mockUserVM: UserVM = parseUserVM(mockUser);

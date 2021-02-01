@@ -4,14 +4,14 @@ import { _colorGray50, _fontWeightBold, _sizeHeaderHeight } from '../../styles/t
 interface Props {
   login: string;
   avatarUrl: string;
-  name: string | null;
-  company: string | null;
-  location: string | null;
-  email: string | null;
-  bio: string | null;
   numberOfFollowers: number;
   numberOfFollowing: number;
   createdAt: string;
+  name?: string;
+  company?: string;
+  location?: string;
+  email?: string;
+  bio?: string;
 }
 
 const StdUserProfile = styled.div``;
@@ -24,14 +24,14 @@ const StdAvatar = styled.img`
 const UserProfile: React.FC<Props> = ({
   login,
   avatarUrl,
+  numberOfFollowers,
+  numberOfFollowing,
+  createdAt,
   name,
   company,
   location,
   email,
   bio,
-  numberOfFollowers,
-  numberOfFollowing,
-  createdAt,
 }: Props) => {
   return (
     <StdUserProfile>
