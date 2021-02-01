@@ -1,13 +1,5 @@
 import { parseCommitActivityVM, parseRepoDetailVM } from '../helpers';
-import { CommitActivity, CommitActivityVM, LanguageVM, RepoDetail, RepoDetailVM } from '../models/repo-detail';
-
-// https://docs.github.com/en/rest/reference/repos#list-repository-languages
-export const mockLanguageVM: LanguageVM = {
-  TypeScript: 103153,
-  JavaScript: 17052,
-  SCSS: 12774,
-  HTML: 4143,
-};
+import { CommitActivity, CommitActivityVM, RepoDetail, RepoDetailVM } from '../models/repo-detail';
 
 // https://docs.github.com/en/rest/reference/repos#get-all-contributor-commit-activity
 export const mockCommitActivities: CommitActivity[] = [
@@ -242,8 +234,6 @@ export const mockCommitActivities: CommitActivity[] = [
 export const mockCommitActivityVMs: CommitActivityVM[] = mockCommitActivities.map(parseCommitActivityVM);
 
 export const mockRepoDetail: RepoDetail = {
-  punchCard: mockPunchCard,
-  language: mockLanguageVM,
   commitActivities: mockCommitActivities,
 };
 

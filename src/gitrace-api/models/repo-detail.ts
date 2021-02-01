@@ -1,15 +1,3 @@
-export type PunchCard = Array<Array<number>>;
-
-export interface PunchCardHole {
-  dayOfWeek: number;
-  hour: number;
-  numberOfCommits: number;
-}
-
-export type PunchCardVM = Array<PunchCardHole>;
-
-export type LanguageVM = { [language: string]: number };
-
 export interface Author {
   login: string;
   id: number;
@@ -51,13 +39,9 @@ export interface CommitActivityVM {
 }
 
 export interface RepoDetail {
-  punchCard: PunchCard;
-  language: LanguageVM;
   commitActivities: CommitActivity[];
 }
 
 export interface RepoDetailVM {
-  punchCardVM: PunchCardVM;
-  languageVM: LanguageVM;
   commitActivityVMs: CommitActivityVM[];
 }
