@@ -1,14 +1,14 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { Layout } from '../foundation/components';
-import { mockRepoVMs } from '../gitrace-api/mocks/repo.mock';
+import { mockRepos } from '../gitrace-api/mocks/repo.mock';
 import { mockUser } from '../gitrace-api/mocks/user.mock';
-import { RepoVM } from '../gitrace-api/models/repo';
+import { Repo } from '../gitrace-api/models/repo';
 import { User } from '../gitrace-api/models/user';
 import { UserProfile } from '../profile/components';
 import { RepoCard } from '../repo/components';
 
-const Search = ({ user, repoVMs }: { user: User; repoVMs: RepoVM[] }) => {
+const Search = ({ user, repos }: { user: User; repos: Repo[] }) => {
   return (
     <>
       <Head>
@@ -19,8 +19,8 @@ const Search = ({ user, repoVMs }: { user: User; repoVMs: RepoVM[] }) => {
       <Layout>
         <UserProfile {...user} />
 
-        {repoVMs.map((repoVM: RepoVM) => (
-          <RepoCard key={repoVM.id} {...repoVM} />
+        {repos.map((repo: Repo) => (
+          <RepoCard key={repo.id} {...repo} />
         ))}
       </Layout>
     </>
@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       user: mockUser,
-      repoVMs: mockRepoVMs,
+      repos: mockRepos,
     },
   };
 };

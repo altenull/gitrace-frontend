@@ -4,14 +4,14 @@ import { _colorGray10, _fontWeightRegular } from '../../styles/theme';
 interface Props {
   id: number;
   name: string;
-  description: string | null;
-  language: string | null;
   size: number;
   numberOfStars: number;
   numberOfWatchers: number;
   isArchived: boolean;
   createdAt: string;
   pushedAt: string;
+  description?: string;
+  language?: string;
 }
 
 const StdRepoCard = styled.div`
@@ -42,20 +42,20 @@ const StdRepoContent = styled.span`
 const RepoCard: React.FC<Props> = ({
   id,
   name,
-  description,
-  language,
   size,
   numberOfStars,
   numberOfWatchers,
   isArchived,
   createdAt,
   pushedAt,
+  description,
+  language,
 }: Props) => {
   return (
     <StdRepoCard>
       <StdRepoName>{name}</StdRepoName>
-      <StdRepoContent>{description}</StdRepoContent>
-      <StdRepoContent>{language}</StdRepoContent>
+      {description != null && <StdRepoContent>{description}</StdRepoContent>}
+      {language != null && <StdRepoContent>{language}</StdRepoContent>}
       <StdRepoContent>{size}</StdRepoContent>
       <StdRepoContent>🌟: {numberOfStars}</StdRepoContent>
       <StdRepoContent>👀: {numberOfWatchers}</StdRepoContent>
