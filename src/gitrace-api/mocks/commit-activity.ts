@@ -1,11 +1,11 @@
-import { parseCommitActivityVM, parseRepoDetailVM } from '../helpers';
-import { CommitActivity, CommitActivityVM, RepoDetail, RepoDetailVM } from '../models/repo-detail';
+import { parseCommitActivityVM } from '../helpers';
+import { CommitActivity, CommitActivityVM } from '../models/commit-activity';
 
 // https://docs.github.com/en/rest/reference/repos#get-all-contributor-commit-activity
 export const mockCommitActivities: CommitActivity[] = [
   {
-    total: 86,
-    weeks: [
+    totalCommits: 86,
+    weeklyCommitActivities: [
       {
         w: 1600560000,
         a: 14526,
@@ -112,13 +112,13 @@ export const mockCommitActivities: CommitActivity[] = [
     author: {
       login: 'oldiepuppie',
       id: 61111156,
-      avatar_url: 'https://avatars0.githubusercontent.com/u/61111156?v=4',
-      html_url: 'https://github.com/oldiepuppie',
+      avatarUrl: 'https://avatars0.githubusercontent.com/u/61111156?v=4',
+      htmlUrl: 'https://github.com/oldiepuppie',
     },
   },
   {
-    total: 10,
-    weeks: [
+    totalCommits: 10,
+    weeklyCommitActivities: [
       {
         w: 1600560000,
         a: 22,
@@ -225,16 +225,10 @@ export const mockCommitActivities: CommitActivity[] = [
     author: {
       login: 'altenull',
       id: 26947777,
-      avatar_url: 'https://avatars1.githubusercontent.com/u/26947777?v=4',
-      html_url: 'https://github.com/altenull',
+      avatarUrl: 'https://avatars1.githubusercontent.com/u/26947777?v=4',
+      htmlUrl: 'https://github.com/altenull',
     },
   },
 ];
 
-export const mockCommitActivityVMs: CommitActivityVM[] = mockCommitActivities.map(parseCommitActivityVM);
-
-export const mockRepoDetail: RepoDetail = {
-  commitActivities: mockCommitActivities,
-};
-
-export const mockRepoDetailVM: RepoDetailVM = parseRepoDetailVM(mockRepoDetail);
+export const mockCommitActivitiesVM: CommitActivityVM[] = mockCommitActivities.map(parseCommitActivityVM);

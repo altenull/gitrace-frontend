@@ -1,28 +1,24 @@
-import { CommitActivity, CommitActivityVM, WeeklyCommitActivity, WeeklyCommitActivityVM } from '../models/repo-detail';
+import {
+  CommitActivity,
+  CommitActivityVM,
+  WeeklyCommitActivity,
+  WeeklyCommitActivityVM,
+} from '../models/commit-activity';
 
 const parseWeeklyCommitActivityVM = ({ w, a, d, c }: WeeklyCommitActivity): WeeklyCommitActivityVM => {
   return {
-    timestamp: w,
+    startOfWeekDate: new Date(w * 1000).toISOString(),
     numberOfAdditions: a,
     numberOfDeletions: d,
     numberOfCommits: c,
   };
 };
 
-const parseCommitActivityVM = ({
-  total,
-  weeks,
-  author: { login, id, avatar_url, html_url },
-}: CommitActivity): CommitActivityVM => {
+const parseCommitActivityVM = ({ totalCommits, weeklyCommitActivities, author }: CommitActivity): CommitActivityVM => {
   return {
-    totalCommits: total,
-    weeklyCommitActivities: weeks.map(parseWeeklyCommitActivityVM),
-    author: {
-      login,
-      id,
-      avatarUrl: avatar_url,
-      htmlUrl: html_url,
-    },
+    totalCommits,
+    author,
+    weeklyCommitActivitiesVM: weeklyCommitActivities.map(parseWeeklyCommitActivityVM),
   };
 };
 
