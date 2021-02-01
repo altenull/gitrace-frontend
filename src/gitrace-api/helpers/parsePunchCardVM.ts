@@ -1,4 +1,4 @@
-import { PunchCard, PunchCardVM } from '../models/repo-detail';
+import { PunchCard, PunchCardVM } from '../models/punch-card';
 
 const parsePunchCardVM = (punchCard: PunchCard): PunchCardVM =>
   punchCard.map((punchCardHole: number[]) => {
