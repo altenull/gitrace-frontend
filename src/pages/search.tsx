@@ -40,6 +40,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const [user, repos] = await Promise.all([userResponse.json(), reposResponse.json()]);
 
+  // notFound - An optional boolean value to allow the page to return a 404 status and page.
+  if (!user || !repos) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       user,
