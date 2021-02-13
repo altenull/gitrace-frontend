@@ -16,4 +16,10 @@ export const GlobalStyle = createGlobalStyle`
   *::after {
     box-sizing: border-box;
   }
+
+  html,
+  body,
+  div#__next {
+    height: 100%;
+  }
 `;
