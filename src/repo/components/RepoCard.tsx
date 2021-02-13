@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { _colorGray10, _fontWeightRegular } from '../../styles/theme';
+import { _colorGray10, _durationNormal, _fontWeightRegular } from '../../styles/theme';
 
 interface Props {
   id: number;
@@ -12,6 +12,7 @@ interface Props {
   pushedAt: string;
   description?: string;
   language?: string;
+  onRepoCardClick: (repoId: string) => void;
 }
 
 const StdRepoCard = styled.div`
@@ -21,6 +22,12 @@ const StdRepoCard = styled.div`
   background-color: ${_colorGray10};
   border-radius: 8px;
   padding: 16px;
+  cursor: pointer;
+  transition: transform ${_durationNormal} ease-in-out;
+
+  :hover {
+    transform: translateY(-8px);
+  }
 
   & + & {
     margin: 12px 0 0 12px;
@@ -50,9 +57,10 @@ const RepoCard: React.FC<Props> = ({
   pushedAt,
   description,
   language,
+  onRepoCardClick,
 }: Props) => {
   return (
-    <StdRepoCard>
+    <StdRepoCard onClick={() => onRepoCardClick(id)}>
       <StdRepoName>{name}</StdRepoName>
       {description != null && <StdRepoContent>{description}</StdRepoContent>}
       {language != null && <StdRepoContent>{language}</StdRepoContent>}

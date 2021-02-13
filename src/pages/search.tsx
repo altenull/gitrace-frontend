@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import { QueryParamKey } from '../core/enums/query-param-key.enum';
 import { Layout } from '../foundation/components';
@@ -13,6 +14,14 @@ interface Props {
 }
 
 const Search = ({ user, repos }: Props) => {
+  const router = useRouter();
+
+  const navigateToRepoPage = (repoId: string) => {
+    router.push({
+      pathname: `/repos/${repoId}`,
+    });
+  };
+
   return (
     <>
       <Head>
@@ -24,7 +33,7 @@ const Search = ({ user, repos }: Props) => {
         <UserProfile {...user} />
 
         {repos.map((repo: Repo) => (
-          <RepoCard key={repo.id} {...repo} />
+          <RepoCard key={repo.id} {...repo} onRepoCardClick={navigateToRepoPage} />
         ))}
       </Layout>
     </>
