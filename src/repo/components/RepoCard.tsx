@@ -12,7 +12,7 @@ interface Props {
   pushedAt: string;
   description?: string;
   language?: string;
-  onRepoCardClick: (repoId: string) => void;
+  onRepoCardClick: (repoName: string) => void;
 }
 
 const StdRepoCard = styled.div`
@@ -60,7 +60,7 @@ const RepoCard: React.FC<Props> = ({
   onRepoCardClick,
 }: Props) => {
   return (
-    <StdRepoCard onClick={() => onRepoCardClick(id)}>
+    <StdRepoCard onClick={() => onRepoCardClick(name)}>
       <StdRepoName>{name}</StdRepoName>
       {description != null && <StdRepoContent>{description}</StdRepoContent>}
       {language != null && <StdRepoContent>{language}</StdRepoContent>}

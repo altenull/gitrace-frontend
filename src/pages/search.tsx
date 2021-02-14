@@ -16,9 +16,9 @@ interface Props {
 const Search = ({ user, repos }: Props) => {
   const router = useRouter();
 
-  const navigateToRepoPage = (repoId: string) => {
+  const navigateToRepoPage = (repoName: string) => {
     router.push({
-      pathname: `/repos/${repoId}`,
+      pathname: `owners/${user.login}/repos/${repoName}`,
     });
   };
 
@@ -41,10 +41,12 @@ const Search = ({ user, repos }: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const userName = context.query[QueryParamKey.Q];
+
   // TODO: Manage end point in one place or as kind of service.
   const [userResponse, reposResponse] = await Promise.all([
-    fetch(`http://localhost:8080/api/users/${context.query[QueryParamKey.Q]}`),
-    fetch(`http://localhost:8080/api/users/${context.query[QueryParamKey.Q]}/repos`),
+    fetch(`http://localhost:8080/api/users/${userName}`),
+    fetch(`http://localhost:8080/api/users/${userName}/repos`),
   ]);
 
   const [user, repos] = await Promise.all([userResponse.json(), reposResponse.json()]);
