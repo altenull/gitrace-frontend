@@ -2,12 +2,11 @@ import { Group } from '@visx/group';
 import { Pie } from '@visx/shape';
 import React from 'react';
 import styled from 'styled-components';
-import { Languages } from '../../../gitrace-api/models/language';
-import { getPieData, getPieScaleOrdinal, sizeAccessor } from './languages-pie-chart.helper';
-import { PieDatum } from './languages-pie-chart.model';
+import { getPieScaleOrdinal, pieValueAccessor } from './pie-chart.helper';
+import { PieDatum } from './pie-chart.model';
 
 interface Props {
-  languages: Languages;
+  data: PieDatum[];
   width: number;
   height: number;
 }
@@ -21,9 +20,8 @@ const ArcLabel = styled.text.attrs({
   pointer-events: none;
 `;
 
-const LanguagesPieChart = ({ languages, width, height }: Props) => {
-  const pieScaleOrdinal = getPieScaleOrdinal(languages);
-  const pieData: PieDatum[] = getPieData(languages);
+const PieChart = ({ data, width, height }: Props) => {
+  const pieScaleOrdinal = getPieScaleOrdinal(data);
 
   const radius = Math.min(width, height) / 2;
   const top = height / 2;
@@ -32,19 +30,19 @@ const LanguagesPieChart = ({ languages, width, height }: Props) => {
   return (
     <svg width={width} height={height}>
       <Group top={top} left={left}>
-        <Pie data={pieData} pieValue={sizeAccessor} outerRadius={radius}>
+        <Pie data={data} pieValue={pieValueAccessor} outerRadius={radius}>
           {(pie) =>
             pie.arcs.map((arc, index) => {
-              const { language } = arc.data;
+              const { name } = arc.data;
               const [centroidX, centroidY] = pie.path.centroid(arc);
               const isFirstArc = index === 0;
 
               return (
-                <g key={`arc-${language}-${index}`}>
-                  <path d={pie.path(arc)!} fill={pieScaleOrdinal(language)} />
+                <g key={`arc-${name}-${index}`}>
+                  <path d={pie.path(arc)!} fill={pieScaleOrdinal(name)} />
                   {isFirstArc && (
                     <ArcLabel x={centroidX} y={centroidY}>
-                      {language}
+                      {name}
                     </ArcLabel>
                   )}
                 </g>
@@ -57,4 +55,4 @@ const LanguagesPieChart = ({ languages, width, height }: Props) => {
   );
 };
 
-export default LanguagesPieChart;
+export default PieChart;
