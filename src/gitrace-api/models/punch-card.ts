@@ -1,4 +1,4 @@
-export type PunchCard = Array<Array<number>>;
+export type OriginPunchCard = number[][];
 
 export interface PunchCardHole {
   dayOfWeek: number;
@@ -6,4 +6,4 @@ export interface PunchCardHole {
   numberOfCommits: number;
 }
 
-export type PunchCardVM = Array<PunchCardHole>;
+export type PunchCard = PunchCardHole[];

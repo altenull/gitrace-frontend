@@ -1,27 +1,27 @@
 import { Author } from './author';
 
-export interface WeeklyCommitActivity {
+export interface OriginWeeklyCommitActivity {
   w: number; // Start of the week, given as a Unix timestamp.
   a: number; // Number of additions
   d: number; // Number of deletions
   c: number; // Number of commits
 }
 
-export interface WeeklyCommitActivityVM {
+export interface WeeklyCommitActivity {
   startOfWeekDate: string;
   numberOfAdditions: number;
   numberOfDeletions: number;
   numberOfCommits: number;
 }
 
-export interface CommitActivity {
+export interface OriginCommitActivity {
   totalCommits: number;
-  weeklyCommitActivities: WeeklyCommitActivity[];
+  weeklyCommitActivities: OriginWeeklyCommitActivity[];
   author: Author;
 }
 
-export interface CommitActivityVM {
+export interface CommitActivity {
   totalCommits: number;
-  weeklyCommitActivitiesVM: WeeklyCommitActivityVM[];
+  weeklyCommitActivities: WeeklyCommitActivity[];
   author: Author;
 }

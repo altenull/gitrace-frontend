@@ -1,2 +1,2 @@
-export { default as parseCommitActivityVM } from './parseCommitActivityVM';
-export { default as parsePunchCardVM } from './parsePunchCardVM';
+export { default as parseCommitActivity } from './parseCommitActivity';
+export { default as parsePunchCard } from './parsePunchCard';

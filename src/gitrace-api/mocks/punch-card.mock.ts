@@ -1,5 +1,5 @@
-import { parsePunchCardVM } from '../helpers';
-import { PunchCard, PunchCardVM } from '../models/punch-card';
+import { parsePunchCard } from '../helpers';
+import { OriginPunchCard, PunchCard } from '../models/punch-card';
 
 /**
  * [0]: dayOfWeek - 0(Sun) ~ 6(Sat)
@@ -7,7 +7,7 @@ import { PunchCard, PunchCardVM } from '../models/punch-card';
  * [2]: number of commits
  * https://docs.github.com/en/rest/reference/repos#get-the-hourly-commit-count-for-each-day
  */
-export const mockPunchCard: PunchCard = [
+export const mockOriginPunchCard: OriginPunchCard = [
   [0, 0, 0],
   [0, 1, 0],
   [0, 2, 0],
@@ -178,4 +178,4 @@ export const mockPunchCard: PunchCard = [
   [6, 23, 0],
 ];
 
-export const mockPunchCardVM: PunchCardVM = parsePunchCardVM(mockPunchCard);
+export const mockPunchCard: PunchCard = parsePunchCard(mockOriginPunchCard);

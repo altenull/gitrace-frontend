@@ -1,8 +1,8 @@
-import { parseCommitActivityVM } from '../helpers';
-import { CommitActivity, CommitActivityVM } from '../models/commit-activity';
+import { parseCommitActivity } from '../helpers';
+import { CommitActivity, OriginCommitActivity } from '../models/commit-activity';
 
 // https://docs.github.com/en/rest/reference/repos#get-all-contributor-commit-activity
-export const mockCommitActivities: CommitActivity[] = [
+export const mockOriginCommitActivities: OriginCommitActivity[] = [
   {
     totalCommits: 86,
     weeklyCommitActivities: [
@@ -231,4 +231,4 @@ export const mockCommitActivities: CommitActivity[] = [
   },
 ];
 
-export const mockCommitActivitiesVM: CommitActivityVM[] = mockCommitActivities.map(parseCommitActivityVM);
+export const mockCommitActivities: CommitActivity[] = mockOriginCommitActivities.map(parseCommitActivity);
