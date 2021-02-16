@@ -30,4 +30,6 @@ export const _fontWeightLight = ({ theme }: { theme: DefaultTheme }) => theme.fo
 export const _fontWeightRegular = ({ theme }: { theme: DefaultTheme }) => theme.fontWeights.regular;
 export const _fontWeightBold = ({ theme }: { theme: DefaultTheme }) => theme.fontWeights.bold;
 
+export const _sizeHeaderWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.headerWidth;
 export const _sizeHeaderHeight = ({ theme }: { theme: DefaultTheme }) => theme.sizes.headerHeight;
+export const _sizeLayoutWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.layoutWidth;

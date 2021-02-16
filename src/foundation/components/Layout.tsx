@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header } from '.';
-import { _colorGray10, _sizeHeaderHeight } from '../../styles/theme';
+import { _colorGray10, _sizeHeaderHeight, _sizeLayoutWidth } from '../../styles/theme';
 
 interface Props {
   children: React.ReactNode;
@@ -14,7 +14,8 @@ const StdMain = styled.main`
 `;
 
 const StdContent = styled.div`
-  padding: 4rem;
+  width: ${_sizeLayoutWidth};
+  margin: auto;
 `;
 
 const Layout: React.FC<Props> = ({ children }: Props) => {

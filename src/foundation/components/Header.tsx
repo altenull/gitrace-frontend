@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { _colorGray10, _colorGray50, _fontWeightBold, _sizeHeaderHeight } from '../../styles/theme';
+import { _colorGray10, _colorGray50, _fontWeightBold, _sizeHeaderHeight, _sizeHeaderWidth } from '../../styles/theme';
 
 const StdHeader = styled.header`
   position: fixed;
@@ -9,7 +9,9 @@ const StdHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 64px;
+  margin: 0 auto;
+  padding: 0;
+  width: ${_sizeHeaderWidth};
   height: ${_sizeHeaderHeight};
   background-color: ${_colorGray10};
 `;
