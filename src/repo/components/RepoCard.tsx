@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { formatBytes } from '../../lib/formatter';
+import { LanguageIcon } from '.';
+import { LanguageKey } from '../../core/enums/language-key.enum';
+import { formatBytes, formatDate } from '../../lib/formatter';
 import { _boxShadowDefault, _durationNormal, _fontWeightRegular } from '../../styles/theme';
 
 interface Props {
@@ -17,9 +19,10 @@ interface Props {
 }
 
 const StdRepoCard = styled.div`
+  position: relative;
   display: inline-flex;
   flex-direction: column;
-  width: 320px;
+  width: 640px;
   background-color: #ffffff;
   border-radius: 8px;
   padding: 16px;
@@ -28,11 +31,11 @@ const StdRepoCard = styled.div`
   transition: transform ${_durationNormal} ease-in-out;
 
   :hover {
-    transform: translateY(-8px);
+    transform: translateY(-4px);
   }
 
   & + & {
-    margin: 12px 0 0 12px;
+    margin-top: 16px;
   }
 `;
 
@@ -46,6 +49,12 @@ const StdRepoContent = styled.span`
   & + & {
     margin-top: 12px;
   }
+`;
+
+const StdLanguageIconWrapper = styled.span`
+  position: absolute;
+  right: 12px;
+  top: 12px;
 `;
 
 const RepoCard: React.FC<Props> = ({
@@ -63,14 +72,19 @@ const RepoCard: React.FC<Props> = ({
 }: Props) => {
   return (
     <StdRepoCard onClick={() => onRepoCardClick(name)}>
+      {language != null && language in LanguageKey && (
+        <StdLanguageIconWrapper>
+          <LanguageIcon language={language as LanguageKey} />
+        </StdLanguageIconWrapper>
+      )}
+
       <StdRepoName>{name}</StdRepoName>
       {description != null && <StdRepoContent>{description}</StdRepoContent>}
-      {language != null && <StdRepoContent>{language}</StdRepoContent>}
       <StdRepoContent>{formatBytes(size)}</StdRepoContent>
       <StdRepoContent>🌟: {numberOfStars}</StdRepoContent>
       <StdRepoContent>👀: {numberOfWatchers}</StdRepoContent>
-      <StdRepoContent>Created At: {createdAt}</StdRepoContent>
-      <StdRepoContent>Last Push: {pushedAt}</StdRepoContent>
+      <StdRepoContent>Created At: {formatDate(createdAt)}</StdRepoContent>
+      <StdRepoContent>Last Push: {formatDate(pushedAt)}</StdRepoContent>
     </StdRepoCard>
   );
 };
