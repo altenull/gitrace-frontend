@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@visx/group": "^1.0.0",
+    "@visx/heatmap": "^1.0.0",
     "@visx/scale": "^1.4.0",
     "@visx/shape": "^1.4.0",
     "babel-plugin-styled-components": "^1.12.0",
