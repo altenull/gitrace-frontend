@@ -1,9 +1,11 @@
 import { useRouter } from 'next/dist/client/router';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { QueryParamKey } from '../../../core/enums/query-param-key.enum';
 import { Repo } from '../../../gitrace-api/models/repo';
-import { RepoCard } from '../../components';
+import { RepoCard, RepoCardSorter } from '../../components';
+import { RepoCardSortOption } from '../../enums/repo-card-sort-option.enum';
+import { sortRepoCards } from './repo-card-list-container.helper';
 
 interface Props {
   repos: Repo[];
@@ -15,7 +17,11 @@ const RepoCardList = styled.div`
   align-items: center;
 `;
 
+const DEFAULT_SORTER_OPTION: RepoCardSortOption = RepoCardSortOption.NameAsc;
+
 const RepoCardListContainer = ({ repos }: Props) => {
+  const [selectedSorterOption, setSelectedSorterOption] = useState<RepoCardSortOption>(DEFAULT_SORTER_OPTION);
+
   const router = useRouter();
 
   const navigateToRepoPage = (repoName: string) => {
@@ -26,12 +32,19 @@ const RepoCardListContainer = ({ repos }: Props) => {
     });
   };
 
+  const onSorterChange = (newSelectedOption: RepoCardSortOption) => {
+    setSelectedSorterOption(newSelectedOption);
+  };
+
   return (
-    <RepoCardList>
-      {repos.map((repo: Repo) => (
-        <RepoCard key={repo.id} {...repo} onRepoCardClick={navigateToRepoPage} />
-      ))}
-    </RepoCardList>
+    <>
+      <RepoCardSorter selectedOption={selectedSorterOption} onChange={onSorterChange} />
+      <RepoCardList>
+        {sortRepoCards(repos, selectedSorterOption).map((repo: Repo) => (
+          <RepoCard key={repo.id} {...repo} onRepoCardClick={navigateToRepoPage} />
+        ))}
+      </RepoCardList>
+    </>
   );
 };
 
