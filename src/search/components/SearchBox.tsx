@@ -4,6 +4,7 @@ import { _colorGray20 } from '../../styles/theme';
 import { SearchIcon } from '../../ui';
 
 interface SearchBoxProps {
+  value?: string;
   placeholder?: string;
   disabled?: boolean;
   onEnter: (searchValue: string) => void;
@@ -11,6 +12,7 @@ interface SearchBoxProps {
 
 const StdSearchBoxWrapper = styled.div`
   width: 480px;
+  margin: 0 auto;
   position: relative;
 `;
 
@@ -34,8 +36,13 @@ const StdIconPositioner = styled.i`
   top: 18px;
 `;
 
-const SearchBox: React.FC<SearchBoxProps> = ({ placeholder = '', disabled = false, onEnter }: SearchBoxProps) => {
-  const [searchValue, setSearchValue] = useState<string>('');
+const SearchBox: React.FC<SearchBoxProps> = ({
+  value = '',
+  placeholder = '',
+  disabled = false,
+  onEnter,
+}: SearchBoxProps) => {
+  const [searchValue, setSearchValue] = useState<string>(value);
 
   const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);

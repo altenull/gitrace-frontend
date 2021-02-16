@@ -7,6 +7,7 @@ import { Repo } from '../gitrace-api/models/repo';
 import { User } from '../gitrace-api/models/user';
 import { UserProfile } from '../profile/components';
 import { RepoCard } from '../repo/components';
+import { SearchBox } from '../search/components';
 
 interface Props {
   user: User;
@@ -22,6 +23,14 @@ const Search = ({ user, repos }: Props) => {
     });
   };
 
+  const searchNewGithubUser = (searchValue: string) => {
+    router.push({
+      query: {
+        [QueryParamKey.Q]: searchValue,
+      },
+    });
+  };
+
   return (
     <>
       <Head>
@@ -30,6 +39,8 @@ const Search = ({ user, repos }: Props) => {
       </Head>
 
       <Layout>
+        <SearchBox value={user.login} placeholder='find github user' onEnter={searchNewGithubUser} />
+
         <UserProfile {...user} />
 
         {repos.map((repo: Repo) => (
