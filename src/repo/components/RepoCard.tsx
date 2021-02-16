@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { LanguageIcon } from '.';
 import { LanguageKey } from '../../core/enums/language-key.enum';
 import { formatBytes, formatDate } from '../../lib/formatter';
-import { _boxShadowDefault, _durationNormal, _fontWeightRegular } from '../../styles/theme';
+import { _boxShadowDefault, _durationNormal, _fontWeightRegular, _sizeRepoCardWidth } from '../../styles/theme';
 
 interface Props {
   id: number;
@@ -22,7 +22,7 @@ const StdRepoCard = styled.div`
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  width: 640px;
+  width: ${_sizeRepoCardWidth};
   background-color: #ffffff;
   border-radius: 8px;
   padding: 16px;

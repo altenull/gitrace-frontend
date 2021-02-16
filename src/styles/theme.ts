@@ -33,3 +33,4 @@ export const _fontWeightBold = ({ theme }: { theme: DefaultTheme }) => theme.fon
 export const _sizeHeaderWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.headerWidth;
 export const _sizeHeaderHeight = ({ theme }: { theme: DefaultTheme }) => theme.sizes.headerHeight;
 export const _sizeLayoutWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.layoutWidth;
+export const _sizeRepoCardWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.repoCardWidth;
