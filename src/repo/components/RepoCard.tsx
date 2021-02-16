@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { _colorGray10, _durationNormal, _fontWeightRegular } from '../../styles/theme';
+import { formatBytes } from '../../lib/formatter';
+import { _boxShadowDefault, _durationNormal, _fontWeightRegular } from '../../styles/theme';
 
 interface Props {
   id: number;
@@ -23,6 +24,7 @@ const StdRepoCard = styled.div`
   border-radius: 8px;
   padding: 16px;
   cursor: pointer;
+  box-shadow: ${_boxShadowDefault};
   transition: transform ${_durationNormal} ease-in-out;
 
   :hover {
@@ -64,7 +66,7 @@ const RepoCard: React.FC<Props> = ({
       <StdRepoName>{name}</StdRepoName>
       {description != null && <StdRepoContent>{description}</StdRepoContent>}
       {language != null && <StdRepoContent>{language}</StdRepoContent>}
-      <StdRepoContent>{size}</StdRepoContent>
+      <StdRepoContent>{formatBytes(size)}</StdRepoContent>
       <StdRepoContent>🌟: {numberOfStars}</StdRepoContent>
       <StdRepoContent>👀: {numberOfWatchers}</StdRepoContent>
       <StdRepoContent>Created At: {createdAt}</StdRepoContent>
