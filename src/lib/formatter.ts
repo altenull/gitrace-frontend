@@ -12,3 +12,9 @@ export const formatBytes = (bytes: number): string => {
   // less than ten of KB or greater units
   return `${n.toFixed(n < 10 && unitIndex > 0 ? 1 : 0)} ${units[unitIndex]}`;
 };
+
+export const formatDate = (targetDate: string): string => {
+  const date: Date = new Date(targetDate);
+
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+};
