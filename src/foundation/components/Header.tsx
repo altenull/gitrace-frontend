@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { _colorGray50, _fontWeightBold, _sizeHeaderHeight } from '../../styles/theme';
+import { _colorGray10, _colorGray50, _fontWeightBold, _sizeHeaderHeight } from '../../styles/theme';
 
 const StdHeader = styled.header`
   position: fixed;
@@ -11,7 +11,7 @@ const StdHeader = styled.header`
   align-items: center;
   padding: 0 64px;
   height: ${_sizeHeaderHeight};
-  background-color: #ffffff;
+  background-color: ${_colorGray10};
 `;
 
 const StdLogo = styled.span`

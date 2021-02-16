@@ -19,7 +19,7 @@ const StdRepoCard = styled.div`
   display: inline-flex;
   flex-direction: column;
   width: 320px;
-  background-color: ${_colorGray10};
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 16px;
   cursor: pointer;
