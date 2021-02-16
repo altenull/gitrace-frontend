@@ -1,15 +1,19 @@
 import { DefaultTheme } from 'styled-components';
+import { boxShadows } from './boxShadows';
 import { colors } from './colors';
 import { durations } from './durations';
 import { fontWeights } from './fontWeights';
 import { sizes } from './sizes';
 
 export const theme: DefaultTheme = {
+  boxShadows,
   colors,
   durations,
   fontWeights,
   sizes,
 };
+
+export const _boxShadowDefault = ({ theme }: { theme: DefaultTheme }) => theme.boxShadows.default;
 
 export const _colorGray10 = ({ theme }: { theme: DefaultTheme }) => theme.colors.gray10;
 export const _colorGray20 = ({ theme }: { theme: DefaultTheme }) => theme.colors.gray20;

@@ -6,6 +6,7 @@ import { Sizes } from './sizes';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    boxShadows: BoxShadows;
     colors: Colors;
     durations: Durations;
     fontWeights: FontWeights;
