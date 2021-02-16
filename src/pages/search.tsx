@@ -6,7 +6,7 @@ import { Layout } from '../foundation/components';
 import { Repo } from '../gitrace-api/models/repo';
 import { User } from '../gitrace-api/models/user';
 import { UserProfile } from '../profile/components';
-import { RepoCard } from '../repo/components';
+import { RepoCardListContainer } from '../repo/containers';
 import { SearchBox } from '../search/components';
 
 interface Props {
@@ -17,16 +17,10 @@ interface Props {
 const Search = ({ user, repos }: Props) => {
   const router = useRouter();
 
-  const navigateToRepoPage = (repoName: string) => {
-    router.push({
-      pathname: `owners/${user.login}/repos/${repoName}`,
-    });
-  };
-
-  const searchNewGithubUser = (searchValue: string) => {
+  const searchNewGithubUser = (newUserName: string) => {
     router.push({
       query: {
-        [QueryParamKey.Q]: searchValue,
+        [QueryParamKey.Q]: newUserName,
       },
     });
   };
@@ -40,12 +34,8 @@ const Search = ({ user, repos }: Props) => {
 
       <Layout>
         <SearchBox value={user.login} placeholder='find github user' onEnter={searchNewGithubUser} />
-
         <UserProfile {...user} />
-
-        {repos.map((repo: Repo) => (
-          <RepoCard key={repo.id} {...repo} onRepoCardClick={navigateToRepoPage} />
-        ))}
+        <RepoCardListContainer repos={repos} />
       </Layout>
     </>
   );
