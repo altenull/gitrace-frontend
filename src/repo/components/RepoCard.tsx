@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LanguageIcon } from '.';
+import { LanguageLogo } from '.';
 import { LanguageKey } from '../../core/enums/language-key.enum';
 import { formatBytes, formatDate } from '../../lib/formatter';
 import {
@@ -84,7 +84,7 @@ const StdArchivedBadge = styled.span`
   border-radius: 12px;
 `;
 
-const StdLanguageIconWrapper = styled.span`
+const StdLanguageLogoWrapper = styled.span`
   position: absolute;
   right: 16px;
   top: 20px;
@@ -103,12 +103,14 @@ const RepoCard: React.FC<Props> = ({
   language,
   onRepoCardClick,
 }: Props) => {
+  const hasLanguageLogo: boolean = language != null && Object.values(LanguageKey).includes(language as LanguageKey);
+
   return (
     <StdRepoCard onClick={() => onRepoCardClick(name)}>
-      {language != null && language in LanguageKey && (
-        <StdLanguageIconWrapper>
-          <LanguageIcon language={language as LanguageKey} />
-        </StdLanguageIconWrapper>
+      {hasLanguageLogo && (
+        <StdLanguageLogoWrapper>
+          <LanguageLogo language={language as LanguageKey} />
+        </StdLanguageLogoWrapper>
       )}
 
       {isArchived && <StdArchivedBadge>Archived</StdArchivedBadge>}
