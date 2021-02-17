@@ -1,3 +1,4 @@
+export { default as DeltaTag } from './DeltaTag/DeltaTag';
 export { default as EmailIcon } from './icons/EmailIcon';
 export { default as LocationIcon } from './icons/LocationIcon';
 export { default as PeopleIcon } from './icons/PeopleIcon';
