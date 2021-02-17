@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
+import styled from 'styled-components';
 import { QueryParamKey } from '../core/enums/query-param-key.enum';
 import { Layout } from '../foundation/components';
 import { Repo } from '../gitrace-api/models/repo';
@@ -13,6 +14,10 @@ interface Props {
   user: User;
   repos: Repo[];
 }
+
+const StdSearchBoxPositioner = styled.div`
+  margin: 32px 0;
+`;
 
 const Search = ({ user, repos }: Props) => {
   const router = useRouter();
@@ -33,7 +38,10 @@ const Search = ({ user, repos }: Props) => {
       </Head>
 
       <Layout>
-        <SearchBox value={user.login} placeholder='find github user' onEnter={searchNewGithubUser} />
+        <StdSearchBoxPositioner>
+          <SearchBox value={user.login} placeholder='find github user' onEnter={searchNewGithubUser} />
+        </StdSearchBoxPositioner>
+
         <UserProfile {...user} />
         <RepoCardListContainer repos={repos} />
       </Layout>
