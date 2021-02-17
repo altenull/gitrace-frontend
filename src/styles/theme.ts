@@ -38,4 +38,4 @@ export const _sizeLayoutWidth = ({ theme }: { theme: DefaultTheme }) => theme.si
 export const _sizeRepoCardWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.repoCardWidth;
 
 export const _zIndexHeader = ({ theme }: { theme: DefaultTheme }) => theme.zIndexes.header;
-export const _zIndexRepoCardSorter = ({ theme }: { theme: DefaultTheme }) => theme.zIndexes.repoCardSorter;
+export const _zIndexRepoCardListHeader = ({ theme }: { theme: DefaultTheme }) => theme.zIndexes.repoCardListHeader;
