@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { _sizeRepoCardWidth } from '../../styles/theme';
+import { _colorGray10, _sizeHeaderHeight, _sizeRepoCardWidth } from '../../styles/theme';
 import { RepoCardSortOption } from '../enums/repo-card-sort-option.enum';
 
 interface Props {
@@ -9,10 +9,13 @@ interface Props {
 }
 
 const RepoCardSorterWrapper = styled.div`
+  position: sticky;
+  top: ${_sizeHeaderHeight};
   width: ${_sizeRepoCardWidth};
   margin: auto;
+  padding: 12px 0;
   text-align: right;
-  margin-bottom: 12px;
+  background-color: ${_colorGray10};
 `;
 
 const RepoCardSorter = ({ selectedOption, onChange }: Props) => {
