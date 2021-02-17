@@ -1,14 +1,8 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import { formatDate } from '../../lib/formatter';
-import {
-  _colorGray30,
-  _colorGray40,
-  _colorGray50,
-  _fontWeightBold,
-  _fontWeightLight,
-  _fontWeightRegular,
-  _sizeHeaderHeight,
-} from '../../styles/theme';
+import { _colorGray30, _colorGray40, _colorGray50, _sizeRepoCardWidth } from '../../styles/theme';
+import { EmailIcon, LocationIcon, PeopleIcon } from '../../ui';
 
 interface Props {
   login: string;
@@ -24,24 +18,38 @@ interface Props {
 }
 
 const StdUserProfile = styled.div`
+  width: ${_sizeRepoCardWidth};
   display: flex;
+  margin: 0 auto 24px;
 `;
 
 const StdAvatar = styled.img`
-  height: 200px;
+  height: 160px;
   border-radius: 50%;
 `;
 
 const StdUserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-left: 48px;
-  padding-top: 24px;
 `;
 
 const StdUserName = styled.h3`
   font-size: 1.375rem;
+  line-height: 1.4;
   margin-bottom: 12px;
   color: ${_colorGray30};
-  /* font-weight: ${_fontWeightLight}; */
+`;
+
+const StdUserInfoContent = styled.span`
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: ${_colorGray40};
+
+  & + & {
+    margin-top: 12px;
+  }
 `;
 
 const UserProfile: React.FC<Props> = ({
@@ -61,13 +69,27 @@ const UserProfile: React.FC<Props> = ({
       <StdAvatar src={avatarUrl} alt={name || login} />
       <StdUserInfo>
         {name != null && <StdUserName>{name}</StdUserName>}
-        {company != null && <p>{company}</p>}
-        {location != null && <p>{location}</p>}
-        {email != null && <p>{email}</p>}
-        {bio != null && <p>{bio}</p>}
-        <p>Followers: {numberOfFollowers}</p>
-        <p>Following: {numberOfFollowing}</p>
-        <p>Created At: {formatDate(createdAt)}</p>
+
+        {bio != null && <StdUserInfoContent>{bio}</StdUserInfoContent>}
+
+        {company != null && <StdUserInfoContent>{company}</StdUserInfoContent>}
+        {location != null && (
+          <StdUserInfoContent>
+            <LocationIcon />
+            {location}
+          </StdUserInfoContent>
+        )}
+        {email != null && (
+          <StdUserInfoContent>
+            <EmailIcon />
+            {email}
+          </StdUserInfoContent>
+        )}
+        <StdUserInfoContent>
+          <PeopleIcon /> {numberOfFollowers} Followers · {numberOfFollowing} Following
+        </StdUserInfoContent>
+
+        <StdUserInfoContent>{formatDate(createdAt)}에 가입함</StdUserInfoContent>
       </StdUserInfo>
     </StdUserProfile>
   );
