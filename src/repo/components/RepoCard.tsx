@@ -2,7 +2,15 @@ import styled from 'styled-components';
 import { LanguageIcon } from '.';
 import { LanguageKey } from '../../core/enums/language-key.enum';
 import { formatBytes, formatDate } from '../../lib/formatter';
-import { _boxShadowDefault, _durationNormal, _fontWeightRegular, _sizeRepoCardWidth } from '../../styles/theme';
+import {
+  _boxShadowDefault,
+  _colorGray20,
+  _colorGray30,
+  _colorGray40,
+  _colorGray60,
+  _durationNormal,
+  _sizeRepoCardWidth,
+} from '../../styles/theme';
 
 interface Props {
   id: number;
@@ -25,7 +33,7 @@ const StdRepoCard = styled.div`
   width: ${_sizeRepoCardWidth};
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 16px;
+  padding: 24px 20px 16px;
   cursor: pointer;
   box-shadow: ${_boxShadowDefault};
   transition: transform ${_durationNormal} ease-in-out;
@@ -35,26 +43,51 @@ const StdRepoCard = styled.div`
   }
 
   & + & {
-    margin-top: 16px;
+    margin-top: 24px;
   }
 `;
 
 const StdRepoName = styled.h4`
   font-size: 1.5rem;
-  font-weight: ${_fontWeightRegular};
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 `;
 
-const StdRepoContent = styled.span`
+const StdSize = styled.span`
+  font-size: 0.875rem;
+  color: ${_colorGray30};
+  margin-bottom: 36px;
+`;
+
+const StdDescription = styled.p`
+  font-size: 0.9375rem;
+  color: ${_colorGray60};
+  margin-bottom: 36px;
+`;
+
+const StdFooterContent = styled.span`
+  font-size: 0.875rem;
+  color: ${_colorGray40};
+
   & + & {
-    margin-top: 12px;
+    margin-left: 24px;
   }
+`;
+
+const StdArchivedBadge = styled.span`
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  padding: 4px 6px;
+  font-size: 0.75rem;
+  color: ${_colorGray40};
+  border: 1px solid ${_colorGray20};
+  border-radius: 12px;
 `;
 
 const StdLanguageIconWrapper = styled.span`
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 16px;
+  top: 20px;
 `;
 
 const RepoCard: React.FC<Props> = ({
@@ -78,13 +111,19 @@ const RepoCard: React.FC<Props> = ({
         </StdLanguageIconWrapper>
       )}
 
+      {isArchived && <StdArchivedBadge>Archived</StdArchivedBadge>}
+
       <StdRepoName>{name}</StdRepoName>
-      {description != null && <StdRepoContent>{description}</StdRepoContent>}
-      <StdRepoContent>{formatBytes(size)}</StdRepoContent>
-      <StdRepoContent>🌟: {numberOfStars}</StdRepoContent>
-      <StdRepoContent>👀: {numberOfWatchers}</StdRepoContent>
-      <StdRepoContent>Created At: {formatDate(createdAt)}</StdRepoContent>
-      <StdRepoContent>Last Push: {formatDate(pushedAt)}</StdRepoContent>
+      <StdSize>{formatBytes(size)}</StdSize>
+
+      {description != null && <StdDescription>{description}</StdDescription>}
+
+      <div>
+        <StdFooterContent>🌟 {numberOfStars}</StdFooterContent>
+        <StdFooterContent>👀 {numberOfWatchers}</StdFooterContent>
+        <StdFooterContent>{formatDate(createdAt)}에 생성됨</StdFooterContent>
+        <StdFooterContent>Last push: {formatDate(pushedAt)}</StdFooterContent>
+      </div>
     </StdRepoCard>
   );
 };
