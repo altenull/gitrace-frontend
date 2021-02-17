@@ -4,6 +4,7 @@ import { colors } from './colors';
 import { durations } from './durations';
 import { fontWeights } from './fontWeights';
 import { sizes } from './sizes';
+import { zIndexes } from './zIndexes';
 
 export const theme: DefaultTheme = {
   boxShadows,
@@ -11,6 +12,7 @@ export const theme: DefaultTheme = {
   durations,
   fontWeights,
   sizes,
+  zIndexes,
 };
 
 export const _boxShadowDefault = ({ theme }: { theme: DefaultTheme }) => theme.boxShadows.default;
@@ -34,3 +36,6 @@ export const _sizeHeaderWidth = ({ theme }: { theme: DefaultTheme }) => theme.si
 export const _sizeHeaderHeight = ({ theme }: { theme: DefaultTheme }) => theme.sizes.headerHeight;
 export const _sizeLayoutWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.layoutWidth;
 export const _sizeRepoCardWidth = ({ theme }: { theme: DefaultTheme }) => theme.sizes.repoCardWidth;
+
+export const _zIndexHeader = ({ theme }: { theme: DefaultTheme }) => theme.zIndexes.header;
+export const _zIndexRepoCardSorter = ({ theme }: { theme: DefaultTheme }) => theme.zIndexes.repoCardSorter;

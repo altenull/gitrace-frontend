@@ -6,6 +6,7 @@ import {
   _fontWeightBold,
   _sizeHeaderHeight,
   _sizeHeaderWidth,
+  _zIndexHeader,
 } from '../../styles/theme';
 
 const StdHeader = styled.header`
@@ -22,6 +23,7 @@ const StdHeader = styled.header`
   height: ${_sizeHeaderHeight};
   background-color: ${_colorGray10};
   border-bottom: 1px solid ${_colorGray20};
+  z-index: ${_zIndexHeader};
 `;
 
 const StdLogo = styled.span`
