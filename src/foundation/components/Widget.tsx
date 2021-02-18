@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { _boxShadowDefault } from '../../styles/theme';
+import { Heading4 } from '../../ui';
 
 interface Props {
   title: string;
@@ -13,16 +14,10 @@ const StdWidget = styled.div`
   box-shadow: ${_boxShadowDefault};
 `;
 
-const StdTitle = styled.h2`
-  font-size: 1.275rem;
-  line-height: 1.5;
-  margin-bottom: 12px;
-`;
-
 const Header = ({ title, children }: Props) => {
   return (
     <StdWidget>
-      <StdTitle>{title}</StdTitle>
+      <Heading4 style={{ marginBottom: '12px' }}>{title}</Heading4>
       {children}
     </StdWidget>
   );

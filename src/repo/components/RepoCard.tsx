@@ -11,6 +11,7 @@ import {
   _durationNormal,
   _sizeRepoCardWidth,
 } from '../../styles/theme';
+import { Heading4, Paragraph } from '../../ui';
 
 interface Props {
   id: number;
@@ -47,19 +48,13 @@ const StdRepoCard = styled.div`
   }
 `;
 
-const StdRepoName = styled.h4`
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-`;
-
 const StdSize = styled.span`
   font-size: 0.875rem;
   color: ${_colorGray30};
   margin-bottom: 36px;
 `;
 
-const StdDescription = styled.p`
-  font-size: 0.9375rem;
+const StdDescription = styled(Paragraph)`
   color: ${_colorGray60};
   margin-bottom: 36px;
 `;
@@ -115,7 +110,7 @@ const RepoCard: React.FC<Props> = ({
 
       {isArchived && <StdArchivedBadge>Archived</StdArchivedBadge>}
 
-      <StdRepoName>{name}</StdRepoName>
+      <Heading4 style={{ marginBottom: '10px' }}>{name}</Heading4>
       <StdSize>{formatBytes(size)}</StdSize>
 
       {description != null && <StdDescription>{description}</StdDescription>}

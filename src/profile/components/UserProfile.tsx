@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 import { formatDate } from '../../lib/formatter';
-import { _colorGray30, _colorGray40, _colorGray50, _sizeRepoCardWidth } from '../../styles/theme';
-import { EmailIcon, LocationIcon, PeopleIcon } from '../../ui';
+import { _colorGray30, _colorGray40, _sizeRepoCardWidth } from '../../styles/theme';
+import { EmailIcon, Heading3, LocationIcon, PeopleIcon } from '../../ui';
 
 interface Props {
   login: string;
@@ -34,9 +33,7 @@ const StdUserInfo = styled.div`
   margin-left: 48px;
 `;
 
-const StdUserName = styled.h3`
-  font-size: 1.375rem;
-  line-height: 1.4;
+const StdUserName = styled(Heading3)`
   margin-bottom: 12px;
   color: ${_colorGray30};
 `;
@@ -45,6 +42,7 @@ const StdUserInfoContent = styled.span`
   display: flex;
   align-items: center;
   font-size: 0.875rem;
+  line-height: 1.25;
   color: ${_colorGray40};
 
   & + & {

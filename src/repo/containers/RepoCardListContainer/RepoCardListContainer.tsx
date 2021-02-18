@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { QueryParamKey } from '../../../core/enums/query-param-key.enum';
 import { Repo } from '../../../gitrace-api/models/repo';
-import { _colorGray10, _sizeHeaderHeight, _sizeRepoCardWidth, _zIndexRepoCardListHeader } from '../../../styles/theme';
-import { DeltaTag } from '../../../ui';
+import { _colorGray10, _sizeHeaderHeight, _zIndexRepoCardListHeader } from '../../../styles/theme';
+import { DeltaTag, Heading5 } from '../../../ui';
 import { RepoCard, RepoCardSorter } from '../../components';
 import { RepoCardSortOption } from '../../enums/repo-card-sort-option.enum';
 import { sortRepoCards } from './repo-card-list-container.helper';
@@ -25,16 +25,10 @@ const StdStickyBox = styled.div`
   top: ${_sizeHeaderHeight};
   display: flex;
   justify-content: space-between;
-  width: ${_sizeRepoCardWidth};
-  padding: 16px 0;
+  padding: 16px 140px;
   margin: 0 auto 16px;
   background-color: ${_colorGray10};
   z-index: ${_zIndexRepoCardListHeader};
-`;
-
-const StdRepoCounter = styled.h5`
-  font-size: 0.875rem;
-  line-height: 1.5;
 `;
 
 const DEFAULT_SORTER_OPTION: RepoCardSortOption = RepoCardSortOption.NameAsc;
@@ -59,9 +53,9 @@ const RepoCardListContainer = ({ repos }: Props) => {
   return (
     <>
       <StdStickyBox>
-        <StdRepoCounter>
+        <Heading5>
           Public 저장소 <DeltaTag>{repos.length}</DeltaTag>
-        </StdRepoCounter>
+        </Heading5>
         <RepoCardSorter selectedOption={selectedSorterOption} onChange={onSorterChange} />
       </StdStickyBox>
 
