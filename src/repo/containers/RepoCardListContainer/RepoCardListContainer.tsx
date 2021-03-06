@@ -1,11 +1,8 @@
 import { useRouter } from 'next/dist/client/router';
-import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import React, { ImgHTMLAttributes, useState } from 'react';
 import styled from 'styled-components';
 import { QueryParamKey } from '../../../core/enums/query-param-key.enum';
 import { Repo } from '../../../gitrace-api/models/repo';
-import { User } from '../../../gitrace-api/models/user';
-import { userAtom } from '../../../store/atoms/gitrace-api.atoms';
 import { _colorGray10, _sizeHeaderHeight, _zIndexRepoCardListHeader } from '../../../styles/theme';
 import { DeltaTag, Heading5 } from '../../../ui';
 import { RepoCard, RepoCardSorter } from '../../components';
@@ -14,13 +11,13 @@ import { sortRepoCards } from './repo-card-list-container.helper';
 
 interface Props {
   repos: Repo[];
+  userAvatar: Pick<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'>;
 }
 
 const DEFAULT_SORTER_OPTION: RepoCardSortOption = RepoCardSortOption.NameAsc;
 
-const RepoCardListContainer = ({ repos }: Props) => {
+const RepoCardListContainer = ({ repos, userAvatar }: Props) => {
   const [selectedSorterOption, setSelectedSorterOption] = useState<RepoCardSortOption>(DEFAULT_SORTER_OPTION);
-  const user: User | null = useRecoilValue(userAtom);
 
   const router = useRouter();
 
@@ -43,7 +40,7 @@ const RepoCardListContainer = ({ repos }: Props) => {
           Public 저장소 <DeltaTag>{repos.length}</DeltaTag>
         </Heading5>
 
-        {user != null && <StdAvatar src={user.avatarUrl} alt={user.name || user.login} />}
+        <StdAvatar {...userAvatar} />
 
         <RepoCardSorter selectedOption={selectedSorterOption} onChange={onSorterChange} />
       </StdStickyBox>
