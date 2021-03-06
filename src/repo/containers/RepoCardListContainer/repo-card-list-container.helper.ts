@@ -11,6 +11,10 @@ export const sortRepoCards = (repos: Repo[], sorterOption: RepoCardSortOption): 
       return new Date(prevRepo.createdAt).getTime() < new Date(nextRepo.createdAt).getTime() ? -1 : 1;
     } else if (sorterOption === RepoCardSortOption.CreatedDesc) {
       return new Date(prevRepo.createdAt).getTime() < new Date(nextRepo.createdAt).getTime() ? 1 : -1;
+    } else if (sorterOption === RepoCardSortOption.SizeAsc) {
+      return prevRepo.size < nextRepo.size ? -1 : 1;
+    } else if (sorterOption === RepoCardSortOption.SizeDesc) {
+      return prevRepo.size < nextRepo.size ? 1 : -1;
     } else {
       return 0;
     }

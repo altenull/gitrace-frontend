@@ -3,4 +3,6 @@ export enum RepoCardSortOption {
   NameDesc = 'name-descending',
   CreatedAsc = 'created-ascending',
   CreatedDesc = 'created-descending',
+  SizeAsc = 'size-ascending',
+  SizeDesc = 'size-descending',
 }

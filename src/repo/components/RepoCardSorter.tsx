@@ -13,6 +13,8 @@ const RepoCardSorter = ({ selectedOption, onChange }: Props) => {
       [RepoCardSortOption.NameDesc]: '이름(내림차순)',
       [RepoCardSortOption.CreatedAsc]: '생성일(오름차순)',
       [RepoCardSortOption.CreatedDesc]: '생성일(내림차순)',
+      [RepoCardSortOption.SizeAsc]: '저장소 크기(오름차순)',
+      [RepoCardSortOption.SizeDesc]: '저장소 크기(내림차순)',
     };
 
     return repoCardSortOptionMap[repoCardSortOption as RepoCardSortOption];
