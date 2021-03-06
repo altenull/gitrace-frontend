@@ -1,8 +1,11 @@
 import { useRouter } from 'next/dist/client/router';
 import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { QueryParamKey } from '../../../core/enums/query-param-key.enum';
 import { Repo } from '../../../gitrace-api/models/repo';
+import { User } from '../../../gitrace-api/models/user';
+import { userAtom } from '../../../store/atoms/gitrace-api.atoms';
 import { _colorGray10, _sizeHeaderHeight, _zIndexRepoCardListHeader } from '../../../styles/theme';
 import { DeltaTag, Heading5 } from '../../../ui';
 import { RepoCard, RepoCardSorter } from '../../components';
@@ -13,28 +16,11 @@ interface Props {
   repos: Repo[];
 }
 
-const StdRepoCardList = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 40px;
-`;
-
-const StdStickyBox = styled.div`
-  position: sticky;
-  top: ${_sizeHeaderHeight};
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 140px;
-  margin: 0 auto 16px;
-  background-color: ${_colorGray10};
-  z-index: ${_zIndexRepoCardListHeader};
-`;
-
 const DEFAULT_SORTER_OPTION: RepoCardSortOption = RepoCardSortOption.NameAsc;
 
 const RepoCardListContainer = ({ repos }: Props) => {
   const [selectedSorterOption, setSelectedSorterOption] = useState<RepoCardSortOption>(DEFAULT_SORTER_OPTION);
+  const user: User | null = useRecoilValue(userAtom);
 
   const router = useRouter();
 
@@ -56,6 +42,9 @@ const RepoCardListContainer = ({ repos }: Props) => {
         <Heading5>
           Public 저장소 <DeltaTag>{repos.length}</DeltaTag>
         </Heading5>
+
+        {user != null && <StdAvatar src={user.avatarUrl} alt={user.name || user.login} />}
+
         <RepoCardSorter selectedOption={selectedSorterOption} onChange={onSorterChange} />
       </StdStickyBox>
 
@@ -67,5 +56,29 @@ const RepoCardListContainer = ({ repos }: Props) => {
     </>
   );
 };
+
+const StdRepoCardList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+`;
+
+const StdStickyBox = styled.div`
+  position: sticky;
+  top: ${_sizeHeaderHeight};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 140px;
+  margin: 0 auto 16px;
+  background-color: ${_colorGray10};
+  z-index: ${_zIndexRepoCardListHeader};
+`;
+
+const StdAvatar = styled.img`
+  height: 40px;
+  border-radius: 50%;
+`;
 
 export default RepoCardListContainer;

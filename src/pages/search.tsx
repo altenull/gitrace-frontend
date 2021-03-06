@@ -1,6 +1,8 @@
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { QueryParamKey } from '../core/enums/query-param-key.enum';
 import { Layout } from '../foundation/components';
@@ -9,6 +11,7 @@ import { User } from '../gitrace-api/models/user';
 import { UserProfile } from '../profile/components';
 import { RepoCardListContainer } from '../repo/containers';
 import { SearchBox } from '../search/components';
+import { userAtom } from '../store/atoms/gitrace-api.atoms';
 
 interface Props {
   user: User;
@@ -20,7 +23,12 @@ const StdSearchBoxPositioner = styled.div`
 `;
 
 const Search = ({ user, repos }: Props) => {
+  const setUserState = useSetRecoilState(userAtom);
   const router = useRouter();
+
+  useEffect(() => {
+    setUserState(user);
+  }, [user]);
 
   const searchNewGithubUser = (newUserName: string) => {
     router.push({
