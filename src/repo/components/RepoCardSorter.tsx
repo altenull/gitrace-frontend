@@ -1,37 +1,51 @@
 import React from 'react';
-import { RepoCardSortOption } from '../enums/repo-card-sort-option.enum';
+import { RepoCardOrderBy } from '../enums/repo-card-order-by.enum';
+import { RepoCardSortBy } from '../enums/repo-card-sort-by.enum';
 
 interface Props {
-  selectedOption: RepoCardSortOption;
-  onChange: (newSelectedOption: RepoCardSortOption) => void;
+  selectedSortBy: RepoCardSortBy;
+  selectedOrderBy: RepoCardOrderBy;
+  onSortByChange: (newSelectedBy: RepoCardSortBy) => void;
+  onOrderByChange: (newOrderBy: RepoCardOrderBy) => void;
 }
 
-const RepoCardSorter = ({ selectedOption, onChange }: Props) => {
-  const getOptionLabel = (repoCardSortOption: string): string => {
-    const repoCardSortOptionMap: { [P in RepoCardSortOption]: string } = {
-      [RepoCardSortOption.NameAsc]: '이름(오름차순)',
-      [RepoCardSortOption.NameDesc]: '이름(내림차순)',
-      [RepoCardSortOption.CreatedAsc]: '생성일(오름차순)',
-      [RepoCardSortOption.CreatedDesc]: '생성일(내림차순)',
-      [RepoCardSortOption.SizeAsc]: '저장소 크기(오름차순)',
-      [RepoCardSortOption.SizeDesc]: '저장소 크기(내림차순)',
-    };
-
-    return repoCardSortOptionMap[repoCardSortOption as RepoCardSortOption];
+const getSortByLabel = (sortBy: string): string => {
+  const sortByToLabelMap: { [P in RepoCardSortBy]: string } = {
+    [RepoCardSortBy.Name]: '이름',
+    [RepoCardSortBy.Created]: '생성일',
+    [RepoCardSortBy.Size]: '저장소 크기',
+    [RepoCardSortBy.Star]: '🌟',
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    onChange(event.target.value as RepoCardSortOption);
+  return sortByToLabelMap[sortBy as RepoCardSortBy];
+};
+
+const RepoCardSorter = ({ selectedSortBy, selectedOrderBy, onSortByChange, onOrderByChange }: Props) => {
+  const handleSortByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onSortByChange(event.target.value as RepoCardSortBy);
+  };
+
+  const handleOrderByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onOrderByChange(event.target.value as RepoCardOrderBy);
   };
 
   return (
-    <select value={selectedOption} onChange={handleChange}>
-      {Object.values(RepoCardSortOption).map((repoCardSortOption: string) => (
-        <option key={repoCardSortOption} value={repoCardSortOption}>
-          {getOptionLabel(repoCardSortOption)}
-        </option>
-      ))}
-    </select>
+    <div>
+      <select value={selectedSortBy} onChange={handleSortByChange}>
+        {Object.values(RepoCardSortBy).map((repoCardSortBy: string) => (
+          <option key={repoCardSortBy} value={repoCardSortBy}>
+            {getSortByLabel(repoCardSortBy)}
+          </option>
+        ))}
+      </select>
+      <select value={selectedOrderBy} onChange={handleOrderByChange}>
+        {Object.values(RepoCardOrderBy).map((repoCardOrderBy: string) => (
+          <option key={repoCardOrderBy} value={repoCardOrderBy}>
+            {repoCardOrderBy}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

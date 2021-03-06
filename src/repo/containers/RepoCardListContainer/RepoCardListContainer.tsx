@@ -1,12 +1,13 @@
 import { useRouter } from 'next/dist/client/router';
-import React, { ImgHTMLAttributes, useState } from 'react';
+import React, { ImgHTMLAttributes, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { QueryParamKey } from '../../../core/enums/query-param-key.enum';
 import { Repo } from '../../../gitrace-api/models/repo';
 import { _colorGray10, _sizeHeaderHeight, _zIndexRepoCardListHeader } from '../../../styles/theme';
 import { DeltaTag, Heading5 } from '../../../ui';
 import { RepoCard, RepoCardSorter } from '../../components';
-import { RepoCardSortOption } from '../../enums/repo-card-sort-option.enum';
+import { RepoCardOrderBy } from '../../enums/repo-card-order-by.enum';
+import { RepoCardSortBy } from '../../enums/repo-card-sort-by.enum';
 import { sortRepoCards } from './repo-card-list-container.helper';
 
 interface Props {
@@ -14,10 +15,12 @@ interface Props {
   userAvatar: Pick<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'>;
 }
 
-const DEFAULT_SORTER_OPTION: RepoCardSortOption = RepoCardSortOption.NameAsc;
+const DEFAULT_SORT_BY: RepoCardSortBy = RepoCardSortBy.Name;
+const DEFAULT_ORDER_BY: RepoCardOrderBy = RepoCardOrderBy.Asc;
 
 const RepoCardListContainer = ({ repos, userAvatar }: Props) => {
-  const [selectedSorterOption, setSelectedSorterOption] = useState<RepoCardSortOption>(DEFAULT_SORTER_OPTION);
+  const [selectedSortBy, setSelectedSortBy] = useState<RepoCardSortBy>(DEFAULT_SORT_BY);
+  const [selectedOrderBy, setSelectedOrderBy] = useState<RepoCardOrderBy>(DEFAULT_ORDER_BY);
 
   const router = useRouter();
 
@@ -29,9 +32,13 @@ const RepoCardListContainer = ({ repos, userAvatar }: Props) => {
     });
   };
 
-  const onSorterChange = (newSelectedOption: RepoCardSortOption) => {
-    setSelectedSorterOption(newSelectedOption);
-  };
+  const changeSortBy = useCallback((newSelectedSortBy: RepoCardSortBy) => {
+    setSelectedSortBy(newSelectedSortBy);
+  }, []);
+
+  const changeOrderBy = useCallback((newSelectedOrderBy: RepoCardOrderBy) => {
+    setSelectedOrderBy(newSelectedOrderBy);
+  }, []);
 
   return (
     <>
@@ -42,11 +49,16 @@ const RepoCardListContainer = ({ repos, userAvatar }: Props) => {
 
         <StdAvatar {...userAvatar} />
 
-        <RepoCardSorter selectedOption={selectedSorterOption} onChange={onSorterChange} />
+        <RepoCardSorter
+          selectedSortBy={selectedSortBy}
+          selectedOrderBy={selectedOrderBy}
+          onSortByChange={changeSortBy}
+          onOrderByChange={changeOrderBy}
+        />
       </StdStickyBox>
 
       <StdRepoCardList>
-        {sortRepoCards(repos, selectedSorterOption).map((repo: Repo) => (
+        {sortRepoCards(repos, selectedSortBy, selectedOrderBy).map((repo: Repo) => (
           <RepoCard key={repo.id} {...repo} onRepoCardClick={navigateToRepoPage} />
         ))}
       </StdRepoCardList>
