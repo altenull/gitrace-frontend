@@ -69,6 +69,7 @@ const StdStickyBox = styled.div`
   align-items: center;
   padding: 16px 140px;
   margin: 0 auto 16px;
+  box-shadow: 0 4px 12px 8px ${_colorGray10};
   background-color: ${_colorGray10};
   z-index: ${_zIndexRepoCardListHeader};
 `;
